@@ -1,13 +1,15 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 )
 
 func createTask() {
-	var taskName string
-	fmt.Printf("Task name: ")
-	fmt.Scan(&taskName)
+	reader := bufio.NewReader(os.Stdin)
+	taskName, _ := getInput(reader, "Task name: ")
+
 	tasks = append(tasks, Task{name: taskName, completed: false})
 	fmt.Println("Successfully created task")
 }
@@ -20,10 +22,9 @@ func getAllTask() {
 }
 
 func completeTask() {
-	var taskName string
 	var success bool
-	fmt.Printf("Task name: ")
-	fmt.Scan(&taskName)
+	reader := bufio.NewReader(os.Stdin)
+	taskName, _ := getInput(reader, "Task name: ")
 
 	for i := range tasks {
 		if tasks[i].name == taskName {
@@ -39,10 +40,9 @@ func completeTask() {
 }
 
 func deleteTask() {
-	var taskName string
 	var index int = -1
-	fmt.Printf("Task name: ")
-	fmt.Scan(&taskName)
+	reader := bufio.NewReader(os.Stdin)
+	taskName, _ := getInput(reader, "Task name: ")
 
 	fmt.Println(taskName)
 
